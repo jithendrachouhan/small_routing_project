@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { RouterProvider } from 'react-router-dom'
+import Router from './utils/Router'
+import UserContext from './utils/UserContext'
 
-function App() {
+const App = () => {
+
+  const [ userData, setUserData ] = useState(null)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <UserContext.Provider value={ {userData: userData, setUserData: setUserData} }>
+      <RouterProvider router={Router}/>
+    </UserContext.Provider>
+  )
 }
 
-export default App;
+export default App
